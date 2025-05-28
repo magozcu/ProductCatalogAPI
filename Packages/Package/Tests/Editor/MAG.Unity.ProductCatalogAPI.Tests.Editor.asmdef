@@ -1,0 +1,20 @@
+{
+    "name": "MAG.Unity.ProductCatalogAPI.Tests.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b6fdb5caf775d7b4296fd6ed4437fb90",
+        "GUID:f28fa824d0cbda34d9e361ac8aa18eaa",
+        "GUID:c47b1cbff6fffe9448edceff3f6ae498"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

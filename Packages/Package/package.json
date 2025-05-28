@@ -1,0 +1,23 @@
+{
+  "name": "com.mag.unity.productcatalogapi",
+  "version": "1.0.0",
+  "description": "Unity package which allows to integrate product catalogs.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "Mert Ali Gözcü",
+    "email": "mertaligozcu@gmail.com",
+    "url": ""
+  },
+  "displayName": "MAG.Unity.ProductCatalogAPI",
+  "unity": "2022.3",
+  "type": "Purchase",
+  "keywords": [
+    "purchase"
+  ],
+  "dependencies": {
+  }
+}

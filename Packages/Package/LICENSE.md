@@ -1,0 +1,1 @@
+MAG.Unity.ProductCatalogAPI License 1.0.0

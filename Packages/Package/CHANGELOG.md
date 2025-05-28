@@ -1,0 +1,1 @@
+MAG.Unity.ProductCatalogAPI Changelog 1.0.0

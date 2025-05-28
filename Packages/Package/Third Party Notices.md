@@ -1,0 +1,1 @@
+MAG.Unity.ProductCatalogAPI Third Party Notices 1.0.0
