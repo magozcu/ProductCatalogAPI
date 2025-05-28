@@ -16,9 +16,7 @@ public static class IMarketElementExtensions
     {
         return elements.OrderBy(element =>
         {
-            IItemTypeHolder itemTypeHolder = element as IItemTypeHolder;
-
-            if (itemTypeHolder == null || itemTypeHolder.ItemTypes == null || !itemTypeHolder.ItemTypes.Any())
+            if (element == null || element.Items == null || !element.Items.Any())
                 return int.MaxValue;
 
             // Iterated through the customItemOrder rather than IItemTypeHolder to find the ItemType with smallest index in the current Market Element.
@@ -27,7 +25,7 @@ public static class IMarketElementExtensions
             {
                 ItemType currentItemType = itemTypeOrder[i];
 
-                if (itemTypeHolder.ItemTypes.Contains(currentItemType))
+                if (element.Items.FirstOrDefault(item => item.ItemType == currentItemType) != null)
                     return Array.IndexOf(itemTypeOrder, currentItemType);
             }
 
@@ -46,6 +44,6 @@ public static class IMarketElementExtensions
         if (filteredItemTypes == null || !filteredItemTypes.Any())
             return elements;
 
-        return elements.Where(element => element.ItemTypes != null && element.ItemTypes.Any(itemType => filteredItemTypes.Contains(itemType))).ToList();
+        return elements.Where(element => element.Items != null && element.Items.Any(itemType => filteredItemTypes.Contains(itemType.ItemType))).ToList();
     }
 }

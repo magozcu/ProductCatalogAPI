@@ -1,36 +1,29 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
 using System;
-using System.Collections.Generic;
 using Unity.Plastic.Newtonsoft.Json;
 
 namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
 {
     [Serializable]
-    public class Product : MarketElementBase, IItem
+    public class Item : IItem
     {
         #region Variables
 
         [JsonProperty]
-        protected ItemType _itemType;
+        private ItemType _itemType;
         [JsonProperty]
-        protected int _amount;
+        public int _amount;
 
         #endregion
 
         #region Constructors
 
-        public Product(string name, string description, float price, ItemType itemType, int amount) : base(name, description, price)
+        public Item(ItemType itemType, int amount)
         {
             _itemType = itemType;
             _amount = amount;
         }
-
-        #endregion
-
-        #region MarketElementBase Implementations
-
-        public override IEnumerable<IItem> Items => new List<IItem> { this };
 
         #endregion
 

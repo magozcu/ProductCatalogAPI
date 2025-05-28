@@ -1,7 +1,7 @@
-using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
 using System;
 using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 
 namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
 {
@@ -10,21 +10,35 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
     {
         #region Variables  
 
-        public string Name;
-        public string Description;
-        public float Price;
+        [JsonProperty]
+        protected string _name;
+        [JsonProperty]
+        protected string _description;
+        [JsonProperty]
+        protected float _price;
+
+        #endregion
+
+        #region Constructors
+
+        public MarketElementBase(string name, string description, float price)
+        {
+            _name = name;
+            _description = description;
+            _price = price;
+        }
 
         #endregion
 
         #region IMarketElement Implementations  
 
-        string IMarketElement.Name => Name;
+        string IMarketElement.Name => _name;
 
-        string IMarketElement.Description => Description;
+        string IMarketElement.Description => _description;
 
-        float IMarketElement.Price => Price;
+        float IMarketElement.Price => _price;
 
-        public abstract IEnumerable<ItemType> ItemTypes { get; }
+        public abstract IEnumerable<IItem> Items { get; }
 
         #endregion
     }

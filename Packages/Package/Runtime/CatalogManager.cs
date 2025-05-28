@@ -1,7 +1,6 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
-using PlasticPipe.Server;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +19,7 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore,
             TypeNameHandling = TypeNameHandling.All,
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
         };
 
         #endregion
@@ -49,12 +49,12 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
 
             LoadCatalog();
 
-            //_catalog.MarketElements = SortMarketElements<float>(element => element.Price, false);
+            //_catalog.MarketElements = SortMarketElements<float>(element => element.Price);
             //_catalog.MarketElements = SortMarketElements(ItemType.Ticket, ItemType.Gem);
             //_catalog.MarketElements = FilterMarketElements(ItemType.Ticket);
             //_catalog.MarketElements = FilterAndSortMarketElements<float>(new ItemType[] { ItemType.Ticket }, element => element.Price, false);
             //_catalog.MarketElements = FilterAndSortMarketElements(null, new ItemType[] { ItemType.Ticket, ItemType.Gem});
-            //_catalog.MarketElements = GetAllMarketElements().OrderBy(a => a.Price).ToList().OrderByItemType(new ItemType[] { ItemType.Ticket, ItemType.Gem }).ToList().FilterMarketElements();
+            _catalog.MarketElements = GetAllMarketElements().OrderBy(a => a.Price).ToList().OrderByItemType(new ItemType[] { ItemType.Ticket, ItemType.Gem }).ToList().FilterMarketElements();
 
             for (int i = 0; i < _catalog.MarketElements.Count(); i++)
                 Debug.Log($"Element {i}: {_catalog.MarketElements.ElementAt(i).Name} {_catalog.MarketElements.ElementAt(i).Description} {_catalog.MarketElements.ElementAt(i).Price}");
@@ -187,255 +187,19 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
         private void Test_InitializeCatalog()
         {
             _catalog = new Catalog();
-            //_catalog.Products = new List<Product>()
-            //{
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Coin,
-            //        Name = "Small Coin Pack",
-            //        Description = "Small Coin Pack Description",
-            //        Price = 9.99f,
-            //        Amount = 100
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Coin,
-            //        Name = "Large Coin Pack",
-            //        Description = "Large Coin Pack Description",
-            //        Price = 19.99f,
-            //        Amount = 250
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Coin,
-            //        Name = "Huge Coin Pack",
-            //        Description = "Huge Coin Pack Description",
-            //        Price = 29.99f,
-            //        Amount = 600
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Gem,
-            //        Name = "Small Gem Pack",
-            //        Description = "Small Gem Pack Description",
-            //        Price = 4.99f,
-            //        Amount = 50
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Gem,
-            //        Name = "Large Gem Pack",
-            //        Description = "Large Gem Pack Description",
-            //        Price = 14.99f,
-            //        Amount = 120
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Gem,
-            //        Name = "Huge Gem Pack",
-            //        Description = "Huge Gem Pack Description",
-            //        Price = 24.99f,
-            //        Amount = 240
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Ticket,
-            //        Name = "Single Ticket",
-            //        Description = "Single Ticket Description",
-            //        Price = 0.99f,
-            //        Amount = 1
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Ticket,
-            //        Name = "Double Ticket",
-            //        Description = "Double Ticket Description",
-            //        Price = 1.49f,
-            //        Amount = 2
-            //    },
-            //    new Product()
-            //    {
-            //        ItemType = ItemType.Ticket,
-            //        Name = "Multiple Ticket",
-            //        Description = "Multiple Ticket Description",
-            //        Price = 3.99f,
-            //        Amount = 5
-            //    },
-            //};
-            //_catalog.Bundles = new List<Bundle>()
-            //{
-            //    new Bundle()
-            //    {
-            //        Name = "Starter Bundle",
-            //        Description = "Starter Bundle Description",
-            //        Price = 9.99f,
-            //        Items = new List<BundleItem>()
-            //        {
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Coin,
-            //                Amount = 100
-            //            },
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Gem,
-            //                Amount = 50
-            //            },
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Ticket,
-            //                Amount = 1
-            //            },
-            //        }
-            //    },
-            //    new Bundle()
-            //    {
-            //        Name = "Advanced Bundle",
-            //        Description = "Advanced Bundle Description",
-            //        Price = 19.99f,
-            //        Items = new List<BundleItem>()
-            //        {
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Coin,
-            //                Amount = 250
-            //            },
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Gem,
-            //                Amount = 100
-            //            },
-            //            new BundleItem()
-            //            {
-            //                ItemType = ItemType.Ticket,
-            //                Amount = 2
-            //            },
-            //        }
-            //    }
-            //};
-
             _catalog.MarketElements = new List<IMarketElement>()
             {
-                new Product()
-                {
-                    ItemType = ItemType.Coin,
-                    Name = "Small Coin Pack",
-                    Description = "Small Coin Pack Description",
-                    Price = 9.99f,
-                    Amount = 100
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Coin,
-                    Name = "Large Coin Pack",
-                    Description = "Large Coin Pack Description",
-                    Price = 19.99f,
-                    Amount = 250
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Coin,
-                    Name = "Huge Coin Pack",
-                    Description = "Huge Coin Pack Description",
-                    Price = 29.99f,
-                    Amount = 600
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Gem,
-                    Name = "Small Gem Pack",
-                    Description = "Small Gem Pack Description",
-                    Price = 4.99f,
-                    Amount = 50
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Gem,
-                    Name = "Large Gem Pack",
-                    Description = "Large Gem Pack Description",
-                    Price = 14.99f,
-                    Amount = 120
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Gem,
-                    Name = "Huge Gem Pack",
-                    Description = "Huge Gem Pack Description",
-                    Price = 24.99f,
-                    Amount = 240
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Ticket,
-                    Name = "Single Ticket",
-                    Description = "Single Ticket Description",
-                    Price = 0.99f,
-                    Amount = 1
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Ticket,
-                    Name = "Double Ticket",
-                    Description = "Double Ticket Description",
-                    Price = 1.49f,
-                    Amount = 2
-                },
-                new Product()
-                {
-                    ItemType = ItemType.Ticket,
-                    Name = "Multiple Ticket",
-                    Description = "Multiple Ticket Description",
-                    Price = 3.99f,
-                    Amount = 5
-                },
-                new Bundle()
-                {
-                    Name = "Starter Bundle",
-                    Description = "Starter Bundle Description",
-                    Price = 9.99f,
-                    Items = new List<BundleItem>()
-                    {
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Coin,
-                            Amount = 100
-                        },
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Gem,
-                            Amount = 50
-                        },
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Ticket,
-                            Amount = 1
-                        },
-                    }
-                },
-                new Bundle()
-                {
-                    Name = "Advanced Bundle",
-                    Description = "Advanced Bundle Description",
-                    Price = 19.99f,
-                    Items = new List<BundleItem>()
-                    {
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Coin,
-                            Amount = 250
-                        },
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Gem,
-                            Amount = 100
-                        },
-                        new BundleItem()
-                        {
-                            ItemType = ItemType.Ticket,
-                            Amount = 2
-                        },
-                    }
-                }
+                new Product("Small Coin Pack", "Small Coin Pack Description", 9.99f, ItemType.Coin, 100),
+                new Product("Large Coin Pack", "Large Coin Pack Description", 19.99f, ItemType.Coin, 250),
+                new Product("Huge Coin Pack", "Huge Coin Pack Description", 29.99f, ItemType.Coin, 600),
+                new Product("Small Gem Pack", "Small Gem Pack Description", 4.99f, ItemType.Gem, 50),
+                new Product("Large Gem Pack", "Large Gem Pack Description", 14.99f, ItemType.Gem, 120),
+                new Product("Huge Gem Pack", "Huge Gem Pack Description", 24.99f, ItemType.Gem, 240),
+                new Product("Single Ticket", "Single Ticket Description", 0.99f, ItemType.Ticket, 1),
+                new Product("Double Ticket", "Double Ticket Description", 1.49f, ItemType.Ticket, 2),
+                new Product("Multiple Ticket", "Multiple Ticket Description", 3.99f, ItemType.Ticket, 5),
+                new Bundle("Starter Bundle", "Starter Bundle Description", 9.99f, new List<Item>() { new Item (ItemType.Coin, 100), new Item (ItemType.Gem, 50), new Item (ItemType.Ticket, 1)}),
+                new Bundle("Advanced Bundle", "Advanced Bundle Description", 29.99f, new List<Item>() { new Item (ItemType.Coin, 250), new Item (ItemType.Gem, 100), new Item (ItemType.Ticket, 2)})
             };
 
             string serializedCatalog = JsonConvert.SerializeObject(_catalog, _serializerSettings);
