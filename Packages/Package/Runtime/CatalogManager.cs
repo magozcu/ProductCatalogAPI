@@ -1,6 +1,7 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
+using MAG.Unity.ProductCatalogAPI.Runtime.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,10 +55,10 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
             //_catalog.MarketElements = FilterMarketElements(ItemType.Ticket);
             //_catalog.MarketElements = FilterAndSortMarketElements<float>(new ItemType[] { ItemType.Ticket }, element => element.Price, false);
             //_catalog.MarketElements = FilterAndSortMarketElements(null, new ItemType[] { ItemType.Ticket, ItemType.Gem});
-            _catalog.MarketElements = GetAllMarketElements().OrderBy(a => a.Price).ToList().OrderByItemType(new ItemType[] { ItemType.Ticket, ItemType.Gem }).ToList().FilterMarketElements();
+            //_catalog.MarketElements = GetAllMarketElements().OrderBy(a => a.Price).ToList().OrderByItemType(new ItemType[] { ItemType.Ticket, ItemType.Gem }).ToList().FilterMarketElements(ItemType.Ticket, ItemType.Coin);
 
-            for (int i = 0; i < _catalog.MarketElements.Count(); i++)
-                Debug.Log($"Element {i}: {_catalog.MarketElements.ElementAt(i).Name} {_catalog.MarketElements.ElementAt(i).Description} {_catalog.MarketElements.ElementAt(i).Price}");
+            //for (int i = 0; i < _catalog.MarketElements.Count(); i++)
+            //    Debug.Log($"Element {i}: {_catalog.MarketElements.ElementAt(i).Name} {_catalog.MarketElements.ElementAt(i).Description} {_catalog.MarketElements.ElementAt(i).Price}");
 
             //Test_InitializeCatalog();
         }
@@ -199,7 +200,8 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
                 new Product("Double Ticket", "Double Ticket Description", 1.49f, ItemType.Ticket, 2),
                 new Product("Multiple Ticket", "Multiple Ticket Description", 3.99f, ItemType.Ticket, 5),
                 new Bundle("Starter Bundle", "Starter Bundle Description", 9.99f, new List<Item>() { new Item (ItemType.Coin, 100), new Item (ItemType.Gem, 50), new Item (ItemType.Ticket, 1)}),
-                new Bundle("Advanced Bundle", "Advanced Bundle Description", 29.99f, new List<Item>() { new Item (ItemType.Coin, 250), new Item (ItemType.Gem, 100), new Item (ItemType.Ticket, 2)})
+                new Bundle("Advanced Bundle", "Advanced Bundle Description", 29.99f, new List<Item>() { new Item (ItemType.Coin, 250), new Item (ItemType.Gem, 100), new Item (ItemType.Ticket, 2)}),
+                new Bundle("No Way Bundle", "No Way Bundle Description", 39.99f, new List<Item>() { new Item (ItemType.Coin, 500), new Item (ItemType.Gem, 200)})
             };
 
             string serializedCatalog = JsonConvert.SerializeObject(_catalog, _serializerSettings);

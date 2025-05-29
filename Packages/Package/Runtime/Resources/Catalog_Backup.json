@@ -126,27 +126,6 @@
         "_name": "Advanced Bundle",
         "_description": "Advanced Bundle Description",
         "_price": 29.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle, MAG.Unity.ProductCatalogAPI",
-        "_items": {
-          "$type": "System.Collections.Generic.List`1[[MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI]], mscorlib",
-          "$values": [
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 0,
-              "_amount": 500
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 1,
-              "_amount": 200
-            }
-          ]
-        },
-        "_name": "No Way Bundle",
-        "_description": "No Way Bundle Description",
-        "_price": 39.99
       }
     ]
   }

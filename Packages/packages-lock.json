@@ -4,7 +4,9 @@
       "version": "file:Package",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.7"
+      }
     },
     "com.unity.collab-proxy": {
       "version": "2.8.2",

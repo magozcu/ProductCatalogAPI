@@ -8,7 +8,7 @@
     "url": ""
   },
   "author": {
-    "name": "Mert Ali Gözcü",
+    "name": "Mert Ali G\u00f6zc\u00fc",
     "email": "mertaligozcu@gmail.com",
     "url": ""
   },
@@ -19,5 +19,6 @@
     "purchase"
   ],
   "dependencies": {
+    "com.unity.textmeshpro": "3.0.7"
   }
 }
