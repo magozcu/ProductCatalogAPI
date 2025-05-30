@@ -1,6 +1,7 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
+using MAG.Unity.ProductCatalogAPI.Runtime.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,10 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
         #region Variables
 
         /// <summary>
+        /// Holds the sorting method selected by the user.
+        /// </summary>
+        private SortingType _sortingType = SortingType.ItemType;
+        /// <summary>
         /// Holds the key selector function used for sorting market elements based on a specific property.
         /// </summary>
         private Func<IMarketElement, object> _sortKeySelector = null;
@@ -88,10 +93,15 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
             }
 
             IEnumerable<IMarketElement> sortedAndFilteredMarketElements = null;
-            if (_sortedItemTypes != null)
-                sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortedItemTypes);
-            else
-                sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortKeySelector, _isSortAscending);
+            switch (_sortingType)
+            {
+                case SortingType.Property:
+                    sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortKeySelector, _isSortAscending);
+                    break;
+                case SortingType.ItemType:
+                    sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortedItemTypes);
+                    break;
+            }
 
             _marketElementsController.EnablePanel(sortedAndFilteredMarketElements);
         }
@@ -146,7 +156,7 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
         {
             _sortKeySelector = keySelector;
             _isSortAscending = ascending;
-            _sortedItemTypes = null;
+            _sortingType = SortingType.Property;
 
             RefreshCatalog();
         }
@@ -154,7 +164,7 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
         private void SortByItemTypeConfirmed(ItemType[] sortedItemTypes)
         {
             _sortedItemTypes = sortedItemTypes;
-            _sortKeySelector = null;
+            _sortingType = SortingType.ItemType;
 
             RefreshCatalog();
         }

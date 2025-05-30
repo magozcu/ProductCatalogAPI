@@ -50,6 +50,8 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
                 _txtPrice.text = _marketElement.Price.ToString();
             if (_txtItems != null)
                 _txtItems.text = string.Join(Environment.NewLine, _marketElement.Items.Select(item => $"{item.ItemType.ToString()}: {item.Amount}"));
+
+            gameObject.SetActive(true);
         }
 
         #endregion
