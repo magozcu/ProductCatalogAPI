@@ -48,23 +48,19 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
             {
                 int createdElementCount = _transformContent.childCount;
 
-                // Too many elements exist. Remove the excess.
-                if (createdElementCount > data.Count())
-                {
-                    for(int i = 0; i < createdElementCount - data.Count(); i++)
-                    {
-                        Transform transformExcess = _transformContent.GetChild(i);
-                        transformExcess.SetSiblingIndex(_transformContent.childCount - 1);
-                        transformExcess.gameObject.SetActive(false);
-                    }
-                }
                 // Not enough elements exist. Create the missing ones.
-                else if (createdElementCount < data.Count())
+                if (createdElementCount < data.Count())
                 {
                     for (int i = 0; i < data.Count() - createdElementCount; i++)
                     {
                         GameObject goNewElement = Instantiate(Resources.Load<GameObject>(PrefabPathElement), _transformContent);
                     }
+                }
+
+                // Disable all existing elements. Required ones will be enabled on initialize.
+                for(int i = 0; i < _transformContent.childCount; i++)
+                {
+                    _transformContent.GetChild(i).gameObject.SetActive(false);
                 }
             }
             catch (Exception ex)

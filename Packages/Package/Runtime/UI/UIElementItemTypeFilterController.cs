@@ -58,6 +58,8 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
                 _txtName.text = _itemType.ToString();
             if(_tglEnabled != null)
                 _tglEnabled.isOn = enabled;
+
+            gameObject.SetActive(true);
         }
 
         #endregion

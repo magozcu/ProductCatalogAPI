@@ -81,28 +81,55 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Displays the given sorted and filtered market elements in the catalog.
+        /// </summary>
+        /// <param name="filteredAndSortedMarketElements"></param>
+        public void DisplayCatalog(IEnumerable<IMarketElement> filteredAndSortedMarketElements)
+        {
+            try
+            {
+                _marketElementsController.EnablePanel(filteredAndSortedMarketElements);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"UICatalogController.DisplayCatalog Error: {ex.Message}");
+            }
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void RefreshCatalog()
         {
-            if(_marketElementsController == null)
+            try
             {
-                Debug.LogError($"UICatalogController.RefreshCatalog Error: _marketElementsController component is null!");
-                return;
-            }
+                if (_marketElementsController == null)
+                {
+                    Debug.LogError($"UICatalogController.RefreshCatalog Error: _marketElementsController component is null!");
+                    return;
+                }
 
-            IEnumerable<IMarketElement> sortedAndFilteredMarketElements = null;
-            switch (_sortingType)
+                IEnumerable<IMarketElement> sortedAndFilteredMarketElements = null;
+                switch (_sortingType)
+                {
+                    case SortingType.Property:
+                        sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortKeySelector, _isSortAscending);
+                        break;
+                    case SortingType.ItemType:
+                        sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortedItemTypes);
+                        break;
+                }
+
+                _marketElementsController.EnablePanel(sortedAndFilteredMarketElements);
+            }
+            catch (Exception ex)
             {
-                case SortingType.Property:
-                    sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortKeySelector, _isSortAscending);
-                    break;
-                case SortingType.ItemType:
-                    sortedAndFilteredMarketElements = CatalogManager.Instance.FilterAndSortMarketElements(_filteredItemTypes, _sortedItemTypes);
-                    break;
+                Debug.LogError($"UICatalogController.RefreshCatalog Error: {ex.Message}");
             }
-
-            _marketElementsController.EnablePanel(sortedAndFilteredMarketElements);
         }
 
         #endregion

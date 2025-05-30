@@ -53,6 +53,8 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
 
             if (_txtName != null)
                 _txtName.text = _itemType.ToString();
+
+            gameObject.SetActive(true);
         }
 
         #endregion
