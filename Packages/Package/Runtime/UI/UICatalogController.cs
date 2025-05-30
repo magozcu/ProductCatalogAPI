@@ -172,6 +172,10 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
         {
             _filteredItemTypes = filteredItemTypes;
 
+            //There should be at least one Item Type in the array. If not, then all of them will be enabled.
+            if(_filteredItemTypes == null || !_filteredItemTypes.Any())
+                _filteredItemTypes = Enum.GetValues(typeof(ItemType)).Cast<ItemType>().ToArray();
+
             RefreshCatalog();
         }
 

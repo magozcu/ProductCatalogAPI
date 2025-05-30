@@ -26,7 +26,22 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
 
         #region Variables
 
-        public static CatalogManager Instance { get; private set; }
+        public static CatalogManager Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    GameObject catalogManagerObject = new GameObject("CatalogManager");
+                    _instance = catalogManagerObject.AddComponent<CatalogManager>();
+
+                    DontDestroyOnLoad(catalogManagerObject);
+                }
+
+                return _instance;
+            }
+        }
+        private static CatalogManager _instance;
 
         private Catalog _catalog;
 
@@ -37,15 +52,13 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
         private void Awake()
         {
             //Singleton Logic
-            if (Instance == null)
+            if (_instance == null)
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
+                _instance = this;
+                DontDestroyOnLoad(this);
             }
             else
-            {
                 Destroy(gameObject);
-            }
 
             LoadCatalog();
 
