@@ -39,7 +39,7 @@ public static class IMarketElementExtensions
     /// <param name="elements">IEnumerable of market elements.</param>
     /// <param name="filteredItemTypes">The item types to include (e.g., Coins, Tickets). If empty or null, returns all market elements.</param>
     /// <returns></returns>
-    public static IEnumerable<IMarketElement> FilterMarketElements(this IEnumerable<IMarketElement> elements, params ItemType[] filteredItemTypes)
+    public static IEnumerable<IMarketElement> FilterByItemType(this IEnumerable<IMarketElement> elements, params ItemType[] filteredItemTypes)
     {
         if (filteredItemTypes == null || !filteredItemTypes.Any())
             return elements;

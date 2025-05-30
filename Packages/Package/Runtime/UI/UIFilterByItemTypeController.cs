@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
 {
-    public class UIFilterByItemTypeController : UIConfirmCancelControllerBase
+    public class UIFilterByItemTypeController : UIListControllerBase<ItemType>
     {
         #region Events
 
@@ -15,9 +15,9 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
 
         #endregion
 
-        #region Prefabs
+        #region Components
 
-        private readonly string _prefabPathElementItemTypeFilter = "Prefabs/UI/Element_ItemTypeFilter";
+        private UIConfirmCancelController _confirmCancelController;
 
         #endregion
 
@@ -27,76 +27,50 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
 
         #endregion
 
-        #region Public Methods
+        #region UIListControllerBase Implementations
 
-        public void EnablePanel(ItemType[] enabledItemTypes)
+        public override string PrefabPathElement => "Prefabs/UI/Element_ItemTypeFilter";
+
+        public override void EnablePanel(IEnumerable<ItemType> data)
         {
             Initialize();
 
-            CreateItemTypeFilterElements(_allItemTypes, enabledItemTypes);
+            SynchronizeElementCount(_allItemTypes);
+            InitializeElements(data);
 
             gameObject.SetActive(true);
         }
 
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Creates or updates the item type order elements count in the content transform based on the provided item types.
-        /// </summary>
-        /// <param name="allItemTypes"></param>
-        private void CreateItemTypeFilterElements(ItemType[] allItemTypes, ItemType[] enabledItemTypes)
+        protected override void InitializeElements(IEnumerable<ItemType> data)
         {
-            try
+            // Set the ItemType for each element. Length of itemTypes should be equal to the child count of _transformContent.
+            // Passes the enabled value as true if the current item type is in the enabledItemTypes array.
+            for (int i = 0; i < _transformContent.childCount; i++)
             {
-                int createdItemTypeFilterElementCount = _transformContent.childCount;
-
-                // Too many elements exist. Remove the excess.
-                if (createdItemTypeFilterElementCount > allItemTypes.Length)
-                {
-                    for (int i = 0; i < createdItemTypeFilterElementCount - allItemTypes.Length; i++)
-                    {
-                        Destroy(_transformContent.GetChild(0).gameObject);
-                    }
-                }
-                // Not enough elements exist. Create the missing ones.
-                else if (createdItemTypeFilterElementCount < allItemTypes.Length)
-                {
-                    for (int i = 0; i < allItemTypes.Length - createdItemTypeFilterElementCount; i++)
-                    {
-                        GameObject goNewElement = Instantiate(Resources.Load<GameObject>(_prefabPathElementItemTypeFilter), _transformContent);
-                    }
-                }
-
-                // Set the ItemType for each element. Length of itemTypes should be equal to the child count of _transformContent.
-                // Passes the enabled value as true if the current item type is in the enabledItemTypes array.
-                for (int i = 0; i < _transformContent.childCount; i++)
-                {
-                    UIElementItemTypeFilterController currentElement = _transformContent.GetChild(i).GetComponent<UIElementItemTypeFilterController>();
-                    currentElement.Initialize(allItemTypes[i], enabledItemTypes.Contains(allItemTypes[i]));
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"UIFilterByItemTypeController.CreateItemTypeFilterElements Error: {ex.Message}");
+                UIElementItemTypeFilterController currentElement = _transformContent.GetChild(i).GetComponent<UIElementItemTypeFilterController>();
+                currentElement.Initialize(_allItemTypes[i], data.Contains(_allItemTypes[i]));
             }
         }
-
-        #endregion
-
-        #region UIControllerBase Implementation
 
         protected override void InitializeComponents()
         {
             base.InitializeComponents();
 
-            _allItemTypes = Enum.GetValues(typeof(ItemType)).Cast<ItemType>().ToArray();
+            //This component will requires Confirm event to apply filtering.  
+            _confirmCancelController = GetComponent<UIConfirmCancelController>();
+            if (_confirmCancelController == null)
+                _confirmCancelController = gameObject.AddComponent<UIConfirmCancelController>();
 
-            _btnConfirm?.onClick.AddListener(ConfirmClicked);
+            _confirmCancelController.OnConfirmClicked += ConfirmClicked;
+
+            _allItemTypes = Enum.GetValues(typeof(ItemType)).Cast<ItemType>().ToArray();
         }
 
-        protected override void ConfirmClicked()
+        #endregion
+
+        #region Callback Methods
+
+        private void ConfirmClicked()
         {
             List<ItemType> enabledItemTypes = new List<ItemType>();
 
@@ -119,7 +93,6 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.UI
             }
 
             OnFilterByItemTypeConfirmed?.Invoke(enabledItemTypes.ToArray());
-            gameObject.SetActive(false);
         }
 
         #endregion

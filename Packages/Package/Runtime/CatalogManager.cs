@@ -143,7 +143,7 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
             if (!IsCatalogLoaded())
                 return Enumerable.Empty<IMarketElement>();
 
-            return _catalog.MarketElements.FilterMarketElements(filteredItemTypes);
+            return _catalog.MarketElements.FilterByItemType(filteredItemTypes);
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
-using MAG.Unity.ProductCatalogAPI.Runtime.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-namespace MAG.Unity.ProductCatalogAPI.Runtime.Enums
+namespace MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums
 {
     /// <summary>
     /// Represents the sorting type for market elements.
