@@ -1,0 +1,16 @@
+{
+    "name": "MAG.Unity.ProductCatalogAPI.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b6fdb5caf775d7b4296fd6ed4437fb90"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
