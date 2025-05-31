@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0] - 2025-05-31
 
+Initial release of the package.
+
 ### Added
 - Initial release of `MAG.Unity.ProductCatalogAPI` package
 - Core API (`CatalogManager`) for loading, filtering, and sorting catalog data
