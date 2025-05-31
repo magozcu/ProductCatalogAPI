@@ -1,1 +1,7 @@
-MAG.Unity.ProductCatalogAPI Third Party Notices 1.0.0
+# Third Party Notices
+
+This package uses the following third-party software:
+
+---
+
+## Newtonsoft.Json
