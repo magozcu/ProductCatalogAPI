@@ -20,6 +20,11 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
 
         #region Constructors
 
+        public Product() : base()
+        {
+
+        }
+
         public Product(string name, string description, float price, ItemType itemType, int amount) : base(name, description, price)
         {
             _itemType = itemType;

@@ -1,153 +1,132 @@
 {
-  "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Catalog, MAG.Unity.ProductCatalogAPI",
-  "MarketElements": {
-    "$type": "System.Collections.Generic.List`1[[MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface.IMarketElement, MAG.Unity.ProductCatalogAPI]], mscorlib",
-    "$values": [
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 0,
-        "_amount": 100,
-        "_name": "Small Coin Pack",
-        "_description": "Small Coin Pack Description",
-        "_price": 9.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 0,
-        "_amount": 250,
-        "_name": "Large Coin Pack",
-        "_description": "Large Coin Pack Description",
-        "_price": 19.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 0,
-        "_amount": 600,
-        "_name": "Huge Coin Pack",
-        "_description": "Huge Coin Pack Description",
-        "_price": 29.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 1,
-        "_amount": 50,
-        "_name": "Small Gem Pack",
-        "_description": "Small Gem Pack Description",
-        "_price": 4.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 1,
-        "_amount": 120,
-        "_name": "Large Gem Pack",
-        "_description": "Large Gem Pack Description",
-        "_price": 14.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 1,
-        "_amount": 240,
-        "_name": "Huge Gem Pack",
-        "_description": "Huge Gem Pack Description",
-        "_price": 24.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 2,
-        "_amount": 1,
-        "_name": "Single Ticket",
-        "_description": "Single Ticket Description",
-        "_price": 0.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 2,
-        "_amount": 2,
-        "_name": "Double Ticket",
-        "_description": "Double Ticket Description",
-        "_price": 1.49
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product, MAG.Unity.ProductCatalogAPI",
-        "_itemType": 2,
-        "_amount": 5,
-        "_name": "Multiple Ticket",
-        "_description": "Multiple Ticket Description",
-        "_price": 3.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle, MAG.Unity.ProductCatalogAPI",
-        "_items": {
-          "$type": "System.Collections.Generic.List`1[[MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI]], mscorlib",
-          "$values": [
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 0,
-              "_amount": 100
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 1,
-              "_amount": 50
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 2,
-              "_amount": 1
-            }
-          ]
+  "MarketElements": [
+    {
+      "_itemType": 0,
+      "_amount": 100,
+      "_name": "Small Coin Pack",
+      "_description": "Small Coin Pack Description",
+      "_price": 9.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 0,
+      "_amount": 250,
+      "_name": "Large Coin Pack",
+      "_description": "Large Coin Pack Description",
+      "_price": 19.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 0,
+      "_amount": 600,
+      "_name": "Huge Coin Pack",
+      "_description": "Huge Coin Pack Description",
+      "_price": 29.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 1,
+      "_amount": 50,
+      "_name": "Small Gem Pack",
+      "_description": "Small Gem Pack Description",
+      "_price": 4.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 1,
+      "_amount": 120,
+      "_name": "Large Gem Pack",
+      "_description": "Large Gem Pack Description",
+      "_price": 14.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 1,
+      "_amount": 240,
+      "_name": "Huge Gem Pack",
+      "_description": "Huge Gem Pack Description",
+      "_price": 24.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 2,
+      "_amount": 1,
+      "_name": "Single Ticket",
+      "_description": "Single Ticket Description",
+      "_price": 0.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 2,
+      "_amount": 2,
+      "_name": "Double Ticket",
+      "_description": "Double Ticket Description",
+      "_price": 1.49,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_itemType": 2,
+      "_amount": 5,
+      "_name": "Multiple Ticket",
+      "_description": "Multiple Ticket Description",
+      "_price": 3.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Product"
+    },
+    {
+      "_items": [
+        {
+          "_itemType": 0,
+          "_amount": 100
         },
-        "_name": "Starter Bundle",
-        "_description": "Starter Bundle Description",
-        "_price": 9.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle, MAG.Unity.ProductCatalogAPI",
-        "_items": {
-          "$type": "System.Collections.Generic.List`1[[MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI]], mscorlib",
-          "$values": [
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 0,
-              "_amount": 250
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 1,
-              "_amount": 100
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 2,
-              "_amount": 2
-            }
-          ]
+        {
+          "_itemType": 1,
+          "_amount": 50
         },
-        "_name": "Advanced Bundle",
-        "_description": "Advanced Bundle Description",
-        "_price": 29.99
-      },
-      {
-        "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle, MAG.Unity.ProductCatalogAPI",
-        "_items": {
-          "$type": "System.Collections.Generic.List`1[[MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI]], mscorlib",
-          "$values": [
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 0,
-              "_amount": 500
-            },
-            {
-              "$type": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Item, MAG.Unity.ProductCatalogAPI",
-              "_itemType": 1,
-              "_amount": 200
-            }
-          ]
+        {
+          "_itemType": 2,
+          "_amount": 1
+        }
+      ],
+      "_name": "Starter Bundle",
+      "_description": "Starter Bundle Description",
+      "_price": 9.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle"
+    },
+    {
+      "_items": [
+        {
+          "_itemType": 0,
+          "_amount": 250
         },
-        "_name": "No Way Bundle",
-        "_description": "No Way Bundle Description",
-        "_price": 39.99
-      }
-    ]
-  }
+        {
+          "_itemType": 1,
+          "_amount": 100
+        },
+        {
+          "_itemType": 2,
+          "_amount": 2
+        }
+      ],
+      "_name": "Advanced Bundle",
+      "_description": "Advanced Bundle Description",
+      "_price": 29.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle"
+    },
+    {
+      "_items": [
+        {
+          "_itemType": 0,
+          "_amount": 500
+        },
+        {
+          "_itemType": 1,
+          "_amount": 200
+        }
+      ],
+      "_name": "No Way Bundle",
+      "_description": "No Way Bundle Description",
+      "_price": 39.99,
+      "_discriminator": "MAG.Unity.ProductCatalogAPI.Runtime.Base.Bundle"
+    }
+  ]
 }

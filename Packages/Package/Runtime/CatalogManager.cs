@@ -1,6 +1,7 @@
 using MAG.Unity.ProductCatalogAPI.Runtime.Base;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Enums;
 using MAG.Unity.ProductCatalogAPI.Runtime.Base.Interface;
+using MAG.Unity.ProductCatalogAPI.Runtime.ThirdParty.Newtonsoft;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,8 +19,12 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime
         {
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore,
-            TypeNameHandling = TypeNameHandling.All,
+            //TypeNameHandling = TypeNameHandling.All,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            Converters = new List<JsonConverter>()
+            {
+                new MarketElementConverter()
+            }
         };
 
         #endregion

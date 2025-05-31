@@ -11,6 +11,8 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
         #region Variables  
 
         [JsonProperty]
+        private string _discriminator;
+        [JsonProperty]
         protected string _name;
         [JsonProperty]
         protected string _description;
@@ -21,7 +23,12 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
 
         #region Constructors
 
-        public MarketElementBase(string name, string description, float price)
+        public MarketElementBase()
+        {
+            _discriminator = GetType().FullName;
+        }
+
+        public MarketElementBase(string name, string description, float price) : this()
         {
             _name = name;
             _description = description;

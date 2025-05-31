@@ -17,6 +17,11 @@ namespace MAG.Unity.ProductCatalogAPI.Runtime.Base
 
         #region Constructors
 
+        public Bundle() : base()
+        {
+            _items = new List<Item>();
+        }
+
         public Bundle(string name, string description, float price, List<Item> items) : base(name, description, price)
         {
             _items = items ?? new List<Item>();
