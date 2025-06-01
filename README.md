@@ -2,6 +2,18 @@
 
 MAG.Unity.ProductCatalogAPI is a flexible and extensible Unity package for loading, displaying, and interacting with a product catalog. It provides both runtime APIs and a ready-to-use UI that allows developers to sort and filter market elements such as Products and Bundles.
 
+## Dependencies
+
+This package depends on the following Unity packages:
+
+- `com.unity.textmeshpro` – Required for UI text rendering
+- `Newtonsoft.Json` – Used for JSON serialization/deserialization
+
+> ℹ️ Make sure both packages are included in your project.
+
+Also, for **TextMeshPro to work properly**, ensure you import the TMP Essentials:
+- Go to `Window > TextMeshPro > Import TMP Essential Resources`
+
 ## Features
 - JSON-based catalog loading via `Resources`
 - Custom filtering and sorting support through `CatalogManager`
