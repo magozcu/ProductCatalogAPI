@@ -8,9 +8,9 @@
     "url": ""
   },
   "author": {
-    "name": "Mert Ali G\u00f6zc\u00fc",
+    "name": "Mert Ali Gozcu",
     "email": "mertaligozcu@gmail.com",
-    "url": ""
+    "url": "https://github.com/magozcu/ProductCatalogAPI.git?path=Packages/com.mag.unity.productcatalogapi"
   },
   "displayName": "MAG.Unity.ProductCatalogAPI",
   "unity": "2022.3",

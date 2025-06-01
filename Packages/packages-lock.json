@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.mag.unity.productcatalogapi": {
-      "version": "file:Package",
+      "version": "file:com.mag.unity.productcatalogapi",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
