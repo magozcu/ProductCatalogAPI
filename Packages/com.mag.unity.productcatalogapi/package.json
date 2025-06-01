@@ -20,5 +20,12 @@
   ],
   "dependencies": {
     "com.unity.textmeshpro": "3.0.7"
+  },
+  "samples": [
+  {
+    "displayName": "Product Catalog Demo",
+    "description": "A demo scene that showcases sorting and filtering functionality.",
+    "path": "Samples~/"
   }
+]
 }
